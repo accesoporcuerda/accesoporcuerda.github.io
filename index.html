@@ -463,8 +463,10 @@
     <div class="hero-form-card">
       <h3>Cuéntanos qué pasa</h3>
       <p class="fp">Te llamamos nosotros. Presupuesto gratuito y sin compromiso.</p>
-      <!-- TODO: sin backend real todavía. Conectar a Formspree (u otro) en cuanto el cliente tenga cuenta creada. -->
-      <form onsubmit="event.preventDefault(); gtag('event','envio_formulario',{ubicacion:'hero'}); this.reset(); alert('Recibido. Te llamamos en breve. Si es urgente, llámanos al 664 466 016.');">
+      <form method="POST" action="https://formsubmit.co/accesoxcuerda@gmail.com" onsubmit="return enviarFormulario(event, this, 'hero');">
+        <input type="hidden" name="_subject" value="Nueva solicitud de presupuesto (web - hero)">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
         <div class="form-row">
           <label for="hf-nombre">Nombre</label>
           <input type="text" id="hf-nombre" name="nombre" placeholder="Tu nombre" required>
@@ -718,10 +720,10 @@
       </div>
     </div>
 
-    <!-- TODO: sin backend real todavía (data-netlify ya no funciona, el sitio está en GitHub Pages). Conectar a Formspree u otro servicio equivalente. -->
-    <form name="contacto" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="gtag_report_conversion(); gtag('event','envio_formulario',{ubicacion:'contacto_seccion'});">
-      <input type="hidden" name="form-name" value="contacto">
-      <p style="display:none"><label>No rellenar: <input name="bot-field"></label></p>
+    <form name="contacto" method="POST" action="https://formsubmit.co/accesoxcuerda@gmail.com" onsubmit="return enviarFormulario(event, this, 'contacto_seccion', true);">
+      <input type="hidden" name="_subject" value="Nueva solicitud de presupuesto (web - contacto)">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
       <div class="form-row">
         <label for="nombre">Nombre</label>
         <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre">
@@ -796,6 +798,34 @@ function gtag_report_conversion() {
       'value': 1.0,
       'currency': 'EUR'
   });
+}
+
+function enviarFormulario(event, form, ubicacion, esConversion) {
+  event.preventDefault();
+  var boton = form.querySelector('button[type="submit"]');
+  var textoOriginal = boton.textContent;
+  boton.disabled = true;
+  boton.textContent = 'Enviando...';
+  fetch('https://formsubmit.co/ajax/accesoxcuerda@gmail.com', {
+    method: 'POST',
+    headers: { 'Accept': 'application/json' },
+    body: new FormData(form)
+  })
+  .then(function(res) { if (!res.ok) throw new Error('error'); return res.json(); })
+  .then(function() {
+    gtag('event', 'envio_formulario', {ubicacion: ubicacion});
+    if (esConversion) gtag_report_conversion();
+    form.reset();
+    alert('Recibido. Te llamamos en breve. Si es urgente, llámanos al 664 466 016.');
+  })
+  .catch(function() {
+    alert('No se pudo enviar el formulario. Llámanos o escríbenos por WhatsApp al 664 466 016.');
+  })
+  .finally(function() {
+    boton.disabled = false;
+    boton.textContent = textoOriginal;
+  });
+  return false;
 }
 </script>
 
