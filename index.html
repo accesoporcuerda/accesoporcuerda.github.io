@@ -397,6 +397,14 @@
     font-family:inherit;font-size:.95rem;background:var(--blanco);color:var(--negro);
   }
   .form-row input:focus, .form-row textarea:focus{outline:2px solid var(--amarillo);}
+
+  /* Foco visible con el teclado en todo lo navegable */
+  a:focus-visible, button:focus-visible, input:focus-visible,
+  select:focus-visible, textarea:focus-visible, summary:focus-visible{
+    outline:3px solid var(--amarillo);
+    outline-offset:3px;
+    border-radius:4px;
+  }
   .form-row textarea{resize:vertical;min-height:100px;}
   form .btn{width:100%;}
 
