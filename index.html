@@ -47,6 +47,12 @@
     {"@type": "AdministrativeArea", "name": "Ávila"}
   ],
   "priceRange": "€€",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5.0",
+    "reviewCount": "5",
+    "bestRating": "5"
+  },
   "openingHoursSpecification": [
     {
       "@type": "OpeningHoursSpecification",
@@ -73,6 +79,14 @@
       "@type": "Question",
       "name": "¿Qué incluye el informe del estado de la cubierta?",
       "acceptedAnswer": {"@type": "Answer", "text": "Fotografías del estado real de tejado, fachada, canalones, chimeneas, claraboyas y puntos de filtración, una explicación en lenguaje claro de qué necesita reparación y qué no, y un presupuesto cerrado de lo que haga falta. Está pensado para que el administrador o el presidente pueda llevarlo directamente a la junta de propietarios."}
+    },
+    {
+      "@type": "Question",
+      "name": "¿La reparación lleva garantía?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Toda reparación que hacemos va con garantía por escrito, recogida en el propio presupuesto que firmas antes de empezar: qué queda cubierto y durante cuánto tiempo. Además trabajamos con seguro de responsabilidad civil en vigor, cuya póliza te entregamos antes de empezar, y con técnicos certificados por ANETVA."
+      }
     },
     {
       "@type": "Question",
@@ -166,7 +180,7 @@
   }
   .topbar b{color:var(--blanco);}
   .topbar .dot{
-    width:8px;height:8px;border-radius:50%;background:#4ade80;display:inline-block;
+    width:8px;height:8px;border-radius:50%;background:#6199D1;display:inline-block;
     margin-right:7px;box-shadow:0 0 0 3px rgba(74,222,128,.22);
   }
 
@@ -348,7 +362,7 @@
     max-width:560px;margin:0 auto;background:var(--gris);border-radius:14px;padding:34px 28px;
   }
   .estrellas{font-size:1.9rem;color:#F5A623;letter-spacing:3px;}
-  .resenas-box .nota{font-size:2.4rem;font-weight:800;display:block;margin-bottom:4px;}
+  .resenas-box .resena-nota{font-size:2.4rem;font-weight:800;display:block;margin-bottom:4px;}
   .resenas-box p{color:#555;font-size:.95rem;margin:12px 0 20px;}
 
   /* FAQ */
@@ -401,6 +415,22 @@
   footer .foot-logo{font-weight:800;color:var(--amarillo);font-size:1.2rem;margin-bottom:10px;}
   footer .foot-links{display:flex;gap:22px;justify-content:center;margin:14px 0;flex-wrap:wrap;font-size:.88rem;}
   footer small{color:#888;font-size:.78rem;display:block;margin-top:14px;}
+
+  .header-nav{display:flex;gap:20px;margin-left:auto;margin-right:22px;}
+  .header-nav a{color:#C8D6E5;font-size:.86rem;font-weight:600;letter-spacing:.2px;padding:6px 0;border-bottom:2px solid transparent;}
+  .header-nav a:hover{color:#fff;border-bottom-color:var(--amarillo);}
+  @media(max-width:1080px){ .header-nav{display:none;} }
+
+  /* PRECIOS */
+  .precios{padding:70px 0;background:var(--gris);}
+  .precios-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:26px;}
+  .precio-card{background:var(--blanco);border:1px solid #e5ddc9;border-radius:12px;padding:22px 24px;}
+  .precio-card strong{display:block;font-size:1.02rem;margin-bottom:6px;color:var(--navy);}
+  .precio-card span{color:#555;font-size:.93rem;line-height:1.55;}
+  .precios-nota{margin-top:22px;background:var(--navy);color:#fff;border-radius:12px;padding:22px 24px;}
+  .precios-nota strong{display:block;font-size:1.05rem;margin-bottom:6px;}
+  .precios-nota span{color:#C8D6E5;font-size:.93rem;line-height:1.55;}
+  @media(max-width:760px){ .precios-grid{grid-template-columns:1fr;} }
 
   /* BARRA FIJA MÓVIL */
   .mobile-bar{
@@ -467,6 +497,13 @@
     <a href="#" class="logo-wrap">
       <img src="images/logo.jpg" alt="Acceso X Cuerda - Trabajos Verticales Madrid">
     </a>
+    <nav class="header-nav">
+      <a href="#servicios">Servicios</a>
+      <a href="#trabajos">Trabajos</a>
+      <a href="#zona">Zona</a>
+      <a href="#precios">Precios</a>
+      <a href="#faq">Preguntas</a>
+    </nav>
     <div class="header-right">
       <a href="https://wa.me/34664466016?text=Hola%2C%20soy%20administrador%2Fpresidente%20de%20una%20comunidad%20y%20quiero%20informaci%C3%B3n%20sobre%20la%20revisi%C3%B3n%20de%20cubierta." class="btn btn-wa" target="_blank" rel="noopener" onclick="trackWhatsapp('header');">
         <svg viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.3-1.4c1.4.8 3 1.2 4.7 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3.1.8.8-3-.2-.3c-.8-1.3-1.3-2.9-1.3-4.4 0-4.5 3.7-8.2 8.2-8.2s8.2 3.7 8.2 8.2-3.6 8.3-8 8.3z"/><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5 0-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.4z"/></svg>
@@ -508,7 +545,7 @@
         </a>
       </div>
       <p class="hero-micro">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6199D1" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
         Presupuesto cerrado por escrito antes de empezar. Sin sorpresas.
       </p>
 
@@ -594,6 +631,10 @@
     <div class="trust-item">
       <svg viewBox="0 0 24 24"><path d="M3 12h18M12 3v18"/></svg>
       <div>+10 años<small>+500 trabajos realizados</small></div>
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      <div>Garantía por escrito<small>De la reparación que hacemos</small></div>
     </div>
   </div>
 </div>
@@ -712,7 +753,7 @@
 </section>
 
 <!-- SERVICIOS -->
-<section class="services">
+<section class="services" id="servicios">
   <div class="container">
     <h2 class="section-title">Qué hacemos</h2>
     <p class="section-sub">Todo lo que hay por encima del suelo, sin montar andamio. En edificios, chalets y naves.</p>
@@ -744,12 +785,13 @@
       <div id="fachadas"><strong>Fachadas</strong><span>Grietas, zonas con riesgo de desprendimiento, sellado y pintura.</span></div>
       <div id="terrazas"><strong>Terrazas y azoteas</strong><span>Tela asfáltica, sumideros y juntas. Reparación o impermeabilización.</span></div>
       <div id="anti-aves"><strong>Anti-palomas</strong><span>Redes y pinchos, y retirada de nidos en patios y cubiertas.</span></div>
+      <div id="informes"><strong>Informes para comunidades</strong><span>Documento con fotos y presupuesto cerrado, listo para llevar a la junta.</span></div>
     </div>
   </div>
 </section>
 
 <!-- GALERIA -->
-<section class="gallery">
+<section class="gallery" id="trabajos">
   <div class="container">
     <h2 class="section-title">Trabajos realizados</h2>
     <p class="section-sub">Fotografías de intervenciones reales en Madrid y alrededores.</p>
@@ -766,34 +808,42 @@
 </section>
 
 <!-- RESEÑAS -->
-<section class="resenas">
+<section class="resenas" id="resenas">
   <div class="container">
     <div class="resenas-box">
-      <span class="nota">5,0</span>
+      <span class="resena-nota">5,0</span>
       <div class="estrellas">★★★★★</div>
-      <p>Valoración media de nuestros clientes en Google.</p>
+      <p>Valoración media sobre 5 reseñas verificadas en Google.</p>
       <a href="https://g.page/r/Cdp_VyJMjG7pEBM" class="btn" target="_blank" rel="noopener">Leer las reseñas en Google</a>
     </div>
   </div>
 </section>
 
 <!-- ZONA -->
-<section class="zona">
+<section class="zona" id="zona">
   <div class="container">
     <h2 class="section-title">Dónde trabajamos</h2>
     <p class="section-sub">Comunidad de Madrid y provincias limítrofes.</p>
     <div class="zona-chips">
       <span>Madrid capital</span>
-      <span>Alcalá de Henares</span>
-      <span>Getafe</span>
-      <span>Leganés</span>
+      <span>Centro</span>
+      <span>Retiro</span>
+      <span>Tetuán</span>
+      <span>Chamberí</span>
+      <span>Arganzuela</span>
+      <span>Chamartín</span>
+      <span>Carabanchel</span>
+      <span>Moncloa - Aravaca</span>
+      <span>Fuencarral - Valverde</span>
       <span>Móstoles</span>
-      <span>Alcorcón</span>
+      <span>Fuenlabrada</span>
+      <span>Getafe</span>
+      <span>Alcalá de Henares</span>
       <span>Las Rozas</span>
-      <span>Pozuelo</span>
-      <span>Majadahonda</span>
-      <span>Alcobendas</span>
-      <span>San Sebastián de los Reyes</span>
+      <span>Collado Villalba</span>
+      <span>Moralzarzal</span>
+      <span>Navalcarnero</span>
+      <span>Sierra Norte</span>
       <span>Toledo</span>
       <span>Guadalajara</span>
       <span>Segovia</span>
@@ -802,8 +852,29 @@
   </div>
 </section>
 
+<!-- PRECIOS -->
+<section class="precios" id="precios">
+  <div class="container">
+    <h2 class="section-title">Cuánto cuesta</h2>
+    <p class="section-sub">Lo único que podemos ponerte cerrado sin ver el edificio es la revisión. La reparación depende de lo que encontremos, y por eso la vemos antes de darte un número.</p>
+
+    <div class="precios-nota">
+      <strong>Revisión con informe: 95 € + IVA (114,95 € con IVA)</strong>
+      <span>Tarifa plana, sea una vivienda o un bloque de ocho plantas. Se descuenta íntegra del presupuesto si nos contratas la reparación. Y si no hay que tocar nada, te lo decimos igual y el informe se queda contigo.</span>
+    </div>
+
+    <h3 style="margin:34px 0 0;font-size:1.1rem;color:var(--navy);">Qué hace que un presupuesto suba o baje</h3>
+    <div class="precios-grid">
+      <div class="precio-card"><strong>La altura y el acceso</strong><span>No cuesta lo mismo un chalet de dos plantas que una fachada de ocho. Trabajar por cuerda ya te ahorra el andamio, que suele ser la partida más cara y no repara nada.</span></div>
+      <div class="precio-card"><strong>Los metros afectados</strong><span>Sellar una junta concreta no es lo mismo que impermeabilizar una azotea entera. En el informe verás la superficie medida, no una estimación a ojo.</span></div>
+      <div class="precio-card"><strong>Si hay que retirar material</strong><span>Tejas rotas, tela asfáltica vieja o nidos acumulados generan escombro, y retirarlo y gestionarlo se presupuesta aparte.</span></div>
+      <div class="precio-card"><strong>La urgencia</strong><span>Una fuga activa que hay que cortar hoy no se organiza igual que un mantenimiento planificado con la comunidad.</span></div>
+    </div>
+  </div>
+</section>
+
 <!-- FAQ -->
-<section class="faq">
+<section class="faq" id="faq">
   <div class="container">
     <h2 class="section-title">Preguntas frecuentes</h2>
     <p class="section-sub">Lo que más nos preguntan administradores y presidentes de comunidad.</p>
@@ -811,6 +882,10 @@
       <div class="faq-item">
         <h3>¿Qué incluye el informe del estado de la cubierta?</h3>
         <p>Fotografías del estado real de tejado, fachada, canalones, chimeneas, claraboyas y puntos de filtración, una explicación en lenguaje claro de qué necesita reparación y qué no, y un presupuesto cerrado de lo que haga falta. Está pensado para que el administrador o el presidente pueda llevarlo directamente a la junta de propietarios.</p>
+      </div>
+      <div class="faq-item">
+        <h3>¿La reparación lleva garantía?</h3>
+        <p>Sí. Toda reparación que hacemos va con garantía por escrito, recogida en el propio presupuesto que firmas antes de empezar: qué queda cubierto y durante cuánto tiempo. Además trabajamos con seguro de responsabilidad civil en vigor, cuya póliza te entregamos antes de empezar, y con técnicos certificados por ANETVA.</p>
       </div>
       <div class="faq-item">
         <h3>¿Cuánto cuesta la inspección y el informe?</h3>
