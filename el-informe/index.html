@@ -113,6 +113,7 @@
   .trust li{display:flex;align-items:center;gap:9px;white-space:nowrap}
   .trust li small{display:block;font-weight:400;color:var(--band-muted);font-size:12.5px;margin-top:2px}
   .trust svg{width:18px;height:18px;stroke:var(--sky);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+  @media (max-width:900px){ .trust ul{display:grid;grid-template-columns:1fr 1fr;gap:10px 16px} .trust li{white-space:normal;font-size:14px} .trust li small{display:none} }
 
   /* INFORME */
   .informe .grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
@@ -135,7 +136,7 @@
   .mas{margin-top:22px;color:var(--muted);font-size:16px}
   .mas b{color:var(--ink);font-weight:600}
   .mas a{color:var(--navy-3);font-weight:600;text-decoration:underline}
-  @media (max-width:900px){ .cards{grid-template-columns:1fr} }
+  @media (max-width:900px){ .cards{grid-template-columns:1fr;gap:12px} .card{flex-direction:row;align-items:stretch} .card img{width:112px;min-width:112px;height:auto} .card .body{padding:14px 16px} .card h3{font-size:21px} .card p{font-size:15px} }
 
   /* SERVICIOS (página): filas foto + texto */
   .svc-rows{display:grid;gap:22px;margin-top:40px}
@@ -162,7 +163,7 @@
   .pasos.grande ol>li:nth-child(even){border-right:0}
   .pasos.grande ol>li:nth-child(odd){padding-left:0}
   .pasos.grande h3{font-size:30px}
-  @media (max-width:900px){ .pasos ol,.pasos.grande ol{grid-template-columns:1fr} .pasos ol>li{border-right:0;padding-left:0!important;border-bottom:1px solid var(--rule);padding-bottom:22px} }
+  @media (max-width:900px){ .pasos ol,.pasos.grande ol{grid-template-columns:1fr} .pasos ol>li{border-right:0;padding-left:0!important;border-bottom:1px solid var(--rule);padding-bottom:16px;padding-top:16px;gap:4px} .pasos .n{font-size:30px} }
   .dos{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:40px}
   .dos .box{background:var(--surface);border:1px solid var(--rule);border-radius:14px;padding:28px}
   .dos h3{font-size:28px;margin-bottom:12px}
