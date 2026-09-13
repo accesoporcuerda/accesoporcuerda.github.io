@@ -91,6 +91,7 @@
   .burger{display:none;width:44px;height:44px;border:0;background:none;cursor:pointer;flex:0 0 auto}
   .burger span{display:block;width:26px;height:2px;background:#fff;margin:5px auto;transition:.3s}
   @media (max-width:1040px){ .nav,.util,.hd .contact{display:none} .burger{display:block;margin-left:auto} .hd .tel .n{display:none} .hd .tel::after{content:"Llamar"} }
+  @media (max-width:480px){ .hd{gap:12px} .logo{font-size:14px;padding:5px 9px 5px 5px;gap:7px;min-width:0;flex:0 1 auto} .logo img{width:26px;height:26px} .hd .tel{font-size:13px;margin-left:auto} .burger{margin-left:0} }
   .mmenu{position:fixed;inset:0;z-index:99;background:var(--dark);color:#fff;padding:90px 28px 40px;display:flex;flex-direction:column;opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .3s,transform .3s,visibility 0s .3s;overflow:auto}
   .mmenu.open{opacity:1;visibility:visible;transform:none;transition-delay:0s}
   .mmenu a{font:700 30px/1.05 var(--disp);text-transform:uppercase;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.12)}
