@@ -24,6 +24,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0A223C">
 <link rel="canonical" href="https://accesoporcuerda.com/">
+
 <link rel="icon" href="/images/logo.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&family=Roboto:wght@400;500;700&display=swap">
@@ -35,7 +36,6 @@
     --ink:#1F1F1F; --muted:#5F6368; --grey:#E9E9E9; --grey-2:#D9D9D9; --paper:#FFFFFF; --rule:#E3E3E3;
     --disp:"Roboto Condensed","Arial Narrow",Arial,sans-serif; --body:"Roboto","Helvetica Neue",Arial,sans-serif;
     --ease:cubic-bezier(.2,.7,.2,1);
-    --bp:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='420' height='420' viewBox='0 0 420 420' fill='none' stroke='%230A223C' stroke-opacity='.08' stroke-width='1'><circle cx='210' cy='210' r='150'/><circle cx='210' cy='210' r='95'/><path d='M60 210h300M210 60v300M105 105l210 210M315 105L105 315'/><rect x='30' y='30' width='360' height='360'/></svg>");
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
@@ -109,7 +109,11 @@
   @media (max-width:900px){ .hero{padding-bottom:96px;min-height:560px} .hero .bg img{object-position:50% 40%} }
 
   /* ---------- 2 · QUIÉNES SOMOS ---------- */
-  .who{background:var(--paper) var(--bp) no-repeat right -80px top -40px;padding:140px 0 120px}
+  .who{padding:140px 0 120px;position:relative;isolation:isolate;overflow:hidden}
+  .who .bgph{position:absolute;inset:0;z-index:-2}
+  .who .bgph img{width:100%;height:100%;object-fit:cover;object-position:center 30%}
+  .who::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(255,255,255,.97) 0%,rgba(255,255,255,.94) 48%,rgba(255,255,255,.55) 100%)}
+  @media (max-width:900px){ .who::after{background:linear-gradient(180deg,rgba(255,255,255,.96) 0%,rgba(255,255,255,.9) 100%)} }
   .who .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}
   .who h2{max-width:14ch}
   .who p.lead{margin:28px 0 30px}
@@ -132,14 +136,16 @@
   @media (max-width:900px){ .split{grid-template-columns:1fr} .split .ph{min-height:320px} .split .pnl{padding:60px 28px} }
 
   /* ---------- 4 · FRASES FIJAS ---------- */
-  .pin{height:260vh;background:var(--grey-2)}
-  .pin .stage{position:sticky;top:0;height:100vh;display:grid;place-items:center;overflow:hidden;background:var(--grey-2) var(--bp) no-repeat center/620px}
-  .pin .line{position:absolute;font:300 clamp(42px,7vw,96px)/1 var(--disp);text-transform:uppercase;color:#fff;text-align:center;opacity:0;transform:translateY(24px);transition:opacity .6s var(--ease),transform .6s var(--ease);padding:0 20px}
+  .pin{position:relative;isolation:isolate;overflow:hidden;color:#fff;padding:140px 0;text-align:center}
+  .pin .bgph{position:absolute;inset:0;z-index:-2}
+  .pin .bgph img{width:100%;height:100%;object-fit:cover;object-position:center}
+  .pin::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(10,34,60,.82),rgba(10,34,60,.7))}
+  .pin .line{display:block;font:300 clamp(40px,6.4vw,88px)/1.05 var(--disp);text-transform:uppercase;padding:0 20px}
   .pin .line b{font-weight:700}
-  .pin .line.on{opacity:1;transform:none}
+  @media (max-width:900px){ .pin{padding:90px 0} }
 
   /* ---------- 5 · CIFRA + CARRUSEL DE TRABAJOS ---------- */
-  .works{padding:120px 0 0;background:var(--paper) var(--bp) no-repeat left -120px top -60px}
+  .works{padding:100px 0 0}
   .works .head{text-align:center;max-width:760px;margin:0 auto 64px}
   .works .head p{color:var(--muted);margin-top:18px}
   .slider{position:relative;overflow:hidden}
@@ -155,7 +161,7 @@
   .prog button{border:0;background:none;font:700 18px/1 var(--disp);cursor:pointer;color:var(--ink);padding:6px 10px}
 
   /* ---------- 6 · SERVICIOS ---------- */
-  .serv{padding:120px 0 120px;background:var(--paper) var(--bp) no-repeat right -160px top 40px}
+  .serv{padding:120px 0 120px}
   .serv .head{max-width:640px;margin-bottom:48px}
   .serv .head p{color:var(--muted);margin-top:18px}
   .cards{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:6px}
@@ -171,6 +177,25 @@
   .ctrl button{width:44px;height:44px;border:0;background:var(--accent);color:#fff;font-size:20px;cursor:pointer}
   .ctrl button:hover{background:var(--accent-ink)}
 
+  /* tarjetas de pestañas (portada) */
+  .tabs{padding:0 0 120px}
+  .tabs .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .tabs .cardx{flex:none}
+  .tabs .cardx .im{aspect-ratio:4/3}
+  @media (max-width:900px){ .tabs{padding-bottom:70px} .tabs .grid{grid-template-columns:1fr} .tabs .cardx .im{aspect-ratio:16/9} }
+  /* reseñas */
+  .rese{padding:96px 0}
+  .rese .head{display:grid;grid-template-columns:auto 1fr auto;gap:28px;align-items:center;margin-bottom:36px}
+  .rese .nota{font:700 96px/1 var(--disp);color:var(--dark)}
+  .rese .nota small{display:block;font:700 12px/1 var(--disp);letter-spacing:.12em;text-transform:uppercase;color:var(--accent-ink);margin-top:6px}
+  .rese .stars{color:#F4B400;font-size:22px;letter-spacing:2px}
+  .rese .head p{color:var(--muted);max-width:44ch;margin-top:8px}
+  .rese .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .rese blockquote{background:var(--grey);padding:28px 26px;display:flex;flex-direction:column;gap:14px;font-size:15px;color:#333}
+  .rese blockquote .stars{font-size:16px}
+  .rese blockquote p{flex:1}
+  .rese cite{font:700 12px/1 var(--disp);letter-spacing:.12em;text-transform:uppercase;font-style:normal;color:var(--dark)}
+  @media (max-width:1000px){ .rese .grid{grid-template-columns:1fr 1fr} .rese .head{grid-template-columns:1fr} } @media (max-width:600px){ .rese .grid{grid-template-columns:1fr} }
   /* ---------- 7 · PANEL GRIS + FOTO SOLAPADA ---------- */
   .why{padding:60px 0 140px}
   .why .grid{display:grid;grid-template-columns:.9fr 1.1fr;align-items:center}
@@ -224,7 +249,10 @@
   @media (max-width:900px){ footer{padding-bottom:110px} }
 
   /* ---------- PÁGINAS INTERIORES ---------- */
-  .subhero{background:var(--dark) var(--bp) no-repeat right -120px top 40px;color:#fff;padding:170px 0 80px}
+  .subhero{background:var(--dark);color:#fff;padding:170px 0 80px;position:relative;isolation:isolate;overflow:hidden}
+  .subhero .bgph{position:absolute;inset:0;z-index:-2}
+  .subhero .bgph img{width:100%;height:100%;object-fit:cover;object-position:center 40%}
+  .subhero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(10,34,60,.94) 0%,rgba(10,34,60,.86) 55%,rgba(10,34,60,.55) 100%)}
   .subhero .volver{display:inline-flex;gap:8px;font:700 11px/1 var(--disp);letter-spacing:.14em;text-transform:uppercase;color:#C8D6E5;margin-bottom:26px}
   .subhero .volver:hover{color:#fff}
   .subhero .eyebrow{color:var(--accent);margin-bottom:14px}
@@ -233,7 +261,7 @@
   .subhero .sub{max-width:62ch;color:#C8D6E5;margin-top:26px;font-size:17px}
   @media (max-width:900px){ .subhero{padding:120px 0 56px} }
   .sec{padding:96px 0}
-  .sec.tint{background:var(--grey) var(--bp) no-repeat left -140px bottom -80px}
+  .sec.tint{background:var(--grey)}
   .sec .eyebrow{margin-bottom:14px}
   .sec h2{font-size:clamp(32px,4vw,52px)}
   .sec p.sub{color:var(--muted);max-width:66ch;margin-top:16px}
@@ -374,19 +402,17 @@
 <body>
 <header id="hd">
   <div class="wrap">
-    <div class="util"><a href="/revision-pre-ite/" target="_blank" rel="noopener">Revisión pre-ITE</a><a href="https://g.page/r/Cdp_VyJMjG7pEBM" target="_blank" rel="noopener">Reseñas en Google</a></div>
+    <div class="util"><a href="/revision-pre-ite/" target="_blank" rel="noopener">Revisión pre-ITE</a><a href="/precios/" target="_blank" rel="noopener">Precios</a><a href="https://g.page/r/Cdp_VyJMjG7pEBM" target="_blank" rel="noopener">Reseñas en Google</a></div>
     <div class="hd">
       <a class="logo" href="/"><img src="/images/logo.jpg" alt="" width="32" height="32"> Acceso X Cuerda</a>
       <ul class="nav">
+        <li><a href="/el-informe/" target="_blank" rel="noopener" data-nav="el-informe">El informe</a><div class="drop"><a href="/el-informe/" target="_blank" rel="noopener">Qué incluye</a><a href="/el-informe/" target="_blank" rel="noopener">Cómo funciona</a><a href="/precios/" target="_blank" rel="noopener">Cuánto cuesta</a><a href="/revision-pre-ite/" target="_blank" rel="noopener">Revisión antes de la ITE</a></div></li>
         <li><a href="/servicios/" target="_blank" rel="noopener" data-nav="servicios">Servicios</a>
           <div class="drop wide">
-            <div><div class="grp">Lo que hacemos</div><a href="/servicios/" target="_blank" rel="noopener">Goteras y humedades</a><a href="/servicios/" target="_blank" rel="noopener">Tejados y cubiertas</a><a href="/servicios/" target="_blank" rel="noopener">Canalones y bajantes</a><a href="/servicios/" target="_blank" rel="noopener">Terrazas y azoteas</a><a href="/servicios/" target="_blank" rel="noopener">Fachadas</a><a href="/servicios/" target="_blank" rel="noopener">Anti-palomas</a></div>
-            <div><div class="grp">Para comunidades</div><a href="/el-informe/" target="_blank" rel="noopener">El informe</a><a href="/revision-pre-ite/" target="_blank" rel="noopener">Revisión antes de la ITE</a><a href="/trabajos/" target="_blank" rel="noopener">Trabajos realizados</a></div>
+            <div><div class="grp">Lo que hacemos</div><a href="/servicios/" target="_blank" rel="noopener">Goteras y humedades</a><a href="/servicios/" target="_blank" rel="noopener">Tejados y cubiertas</a><a href="/servicios/" target="_blank" rel="noopener">Canalones y bajantes</a></div>
+            <div><div class="grp">&nbsp;</div><a href="/servicios/" target="_blank" rel="noopener">Terrazas y azoteas</a><a href="/servicios/" target="_blank" rel="noopener">Fachadas</a><a href="/servicios/" target="_blank" rel="noopener">Anti-palomas</a></div>
           </div></li>
-        <li><a href="/el-informe/" target="_blank" rel="noopener" data-nav="el-informe">El informe</a></li>
-        <li><a href="/como-funciona/" target="_blank" rel="noopener" data-nav="como-funciona">Cómo funciona</a><div class="drop"><a href="/como-funciona/" target="_blank" rel="noopener">Los cuatro pasos</a><a href="/precios/" target="_blank" rel="noopener">Cuánto cuesta</a><a href="/preguntas/" target="_blank" rel="noopener">Preguntas frecuentes</a></div></li>
-        <li><a href="/trabajos/" target="_blank" rel="noopener" data-nav="trabajos">Trabajos</a></li>
-        <li><a href="/precios/" target="_blank" rel="noopener" data-nav="precios">Precios</a></li>
+        <li><a href="/trabajos/" target="_blank" rel="noopener" data-nav="trabajos">Fotos y reseñas</a></li>
         <li><a href="/preguntas/" target="_blank" rel="noopener" data-nav="preguntas">Preguntas</a></li>
       </ul>
       <a class="contact" href="#pedir" data-scroll>Contacto</a>
@@ -396,7 +422,7 @@
   </div>
 </header>
 <nav class="mmenu" id="mmenu" aria-label="Menú móvil">
-  <a href="/servicios/" target="_blank" rel="noopener" onclick="cerrarMenu()">Servicios</a><a href="/el-informe/" target="_blank" rel="noopener" onclick="cerrarMenu()">El informe</a><a href="/como-funciona/" target="_blank" rel="noopener" onclick="cerrarMenu()">Cómo funciona</a><a href="/trabajos/" target="_blank" rel="noopener" onclick="cerrarMenu()">Trabajos</a><a href="/precios/" target="_blank" rel="noopener" onclick="cerrarMenu()">Precios</a><a href="/preguntas/" target="_blank" rel="noopener" onclick="cerrarMenu()">Preguntas</a><a href="/revision-pre-ite/" target="_blank" rel="noopener" onclick="cerrarMenu()">Revisión pre-ITE</a><a href="#pedir" data-scroll onclick="cerrarMenu()">Contacto</a>
+  <a href="/el-informe/" target="_blank" rel="noopener" onclick="cerrarMenu()">El informe</a><a href="/servicios/" target="_blank" rel="noopener" onclick="cerrarMenu()">Servicios</a><a href="/trabajos/" target="_blank" rel="noopener" onclick="cerrarMenu()">Fotos y reseñas</a><a href="/preguntas/" target="_blank" rel="noopener" onclick="cerrarMenu()">Preguntas</a><a href="/precios/" target="_blank" rel="noopener" onclick="cerrarMenu()">Precios</a><a href="/revision-pre-ite/" target="_blank" rel="noopener" onclick="cerrarMenu()">Revisión pre-ITE</a><a href="#pedir" data-scroll onclick="cerrarMenu()">Contacto</a>
   <div class="foot"><a class="btn" href="tel:+34664466016" style="width:100%" onclick="trackLlamar('menu_movil');">Llamar: 664 466 016</a></div>
 </nav>
 <main>
@@ -405,11 +431,11 @@
   <div class="wrap"><h1 class="rv">Inspección y reparación de fachadas y tejados. <span class="lt">Sin andamio.</span></h1></div>
 </section>
 
-<section class="who" id="informe"><div class="wrap grid">
+<section class="who" id="informe"><div class="bgph"><img src="/images/stock-madrid-tejados.jpg" alt="" loading="lazy"></div><div class="wrap grid">
   <div>
-    <h2 class="big rv">Lo revisamos de cerca. <span class="lt">Es lo que hacemos y cómo lo hacemos.</span></h2>
-    <p class="lead rv d1">Lo revisamos in situ, mediante acceso por cuerda y drone de apoyo. Te entregamos un informe con fotos y presupuesto cerrado. Después reparamos sin montar un solo andamio. Trabajamos para comunidades de vecinos y administradores de fincas, y también para chalets, viviendas y naves.</p>
-    <a class="btn rv d2" href="/el-informe/" target="_blank" rel="noopener">Qué incluye el informe</a>
+    <h2 class="big rv">Primero lo vemos de cerca. <span class="lt">Después, una cifra cerrada.</span></h2>
+    <p class="lead rv d1">Revisamos el tejado y la fachada in situ, mediante acceso por cuerda y drone de apoyo, y te entregamos un informe con fotos y presupuesto cerrado por escrito. Después reparamos sin montar un solo andamio. Trabajamos para comunidades de vecinos y administradores de fincas, y también para chalets, viviendas y naves de Madrid y provincias limítrofes.</p>
+    <div class="rv d2" style="display:flex;gap:12px;flex-wrap:wrap"><a class="btn" href="/el-informe/" target="_blank" rel="noopener">Qué incluye el informe</a><a class="btn ghost-dark" href="tel:+34664466016" onclick="trackLlamar('hero');">Llamar: 664 466 016</a></div>
   </div>
   <div class="collage">
     <figure class="zoom rv"><img src="/images/galeria-3.jpg" alt="Cuerdas tendidas sobre una cubierta de teja durante una reparación" loading="lazy"></figure>
@@ -419,80 +445,26 @@
   </div>
 </div></section>
 
-<section class="split">
-  <div class="ph zoom rv"><img src="/images/galeria-1.jpg" alt="Fachada de un edificio vista desde arriba durante un trabajo vertical" loading="lazy"></div>
-  <div class="pnl">
-    <span class="k rv">El informe</span>
-    <h2 class="rv d1"><span class="lt">Un documento</span> con el que decidir</h2>
-    <p class="rv d2">El problema casi nunca es el tejado: es que nadie sabe con certeza cómo está. Uno dice que hay que cambiarlo entero, otro dice que aguanta dos años más, y al final hay que decidir un gasto importante sin haber visto nada. Nuestro informe cierra esa discusión.</p>
-    <ul class="rv d3"><li>Fotos reales del estado del tejado, la fachada, los canalones, las chimeneas y las claraboyas.</li><li>Qué hay que reparar y qué no, en lenguaje claro.</li><li>Presupuesto cerrado por escrito, con garantía por escrito.</li><li>Sin compromiso: si no hace falta hacer nada, te lo decimos y el informe se queda contigo.</li></ul>
-    <div class="rv d3"><a class="btn" href="/el-informe/" target="_blank" rel="noopener">El informe</a></div>
-  </div>
-</section>
-
-<section class="pin" id="pin" aria-hidden="true"><div class="stage">
-  <div class="line" data-at="0">Sin <b>andamio</b></div>
-  <div class="line" data-at="1">Sin <b>sorpresas</b></div>
-  <div class="line" data-at="2">Presupuesto cerrado <b>por escrito</b></div>
-</div></section>
-
-<section class="works" id="trabajos"><div class="wrap">
-  <div class="head"><h2 class="rv"><span class="lt">Más de 10 años y</span> 500 trabajos <span class="lt">en Madrid</span></h2><p class="rv d1">Fotografías de intervenciones reales en Madrid y alrededores, hechas desde donde se hace el trabajo: la propia cubierta.</p></div>
-  </div>
-  <div class="slider rv d1"><div class="slides" id="slides">
-    <div class="slide"><img src="/images/galeria-3.jpg" alt="Cubierta de teja de una comunidad de vecinos durante una reparación" loading="lazy"><a class="cap" href="/trabajos/" target="_blank" rel="noopener"><h3>Cubierta de teja</h3><small>Comunidad de vecinos · Madrid</small></a></div>
-    <div class="slide"><img src="/images/galeria-2.jpg" alt="Trabajo vertical en fachada" loading="lazy"><a class="cap" href="/trabajos/" target="_blank" rel="noopener"><h3>Fachada</h3><small>Trabajo vertical · Madrid</small></a></div>
-    <div class="slide"><img src="/images/hero-bg.jpg" alt="Técnico revisando el borde de una cubierta" loading="lazy"><a class="cap" href="/trabajos/" target="_blank" rel="noopener"><h3>Revisión de cubierta</h3><small>Chalet · Madrid</small></a></div>
-    <div class="slide"><img src="/images/galeria-5.jpg" alt="Patio interior y azotea vistos desde la cubierta" loading="lazy"><a class="cap" href="/trabajos/" target="_blank" rel="noopener"><h3>Azotea</h3><small>Madrid</small></a></div>
-    <div class="slide"><img src="/images/galeria-4.jpg" alt="Patio interior visto desde la cubierta" loading="lazy"><a class="cap" href="/trabajos/" target="_blank" rel="noopener"><h3>Patio interior</h3><small>Madrid</small></a></div>
-  </div></div>
-  <div class="prog"><button type="button" onclick="go(-1)" aria-label="Anterior">‹</button><span id="pn">01</span><div class="bar"><i id="pb" style="width:20%"></i></div><span>05</span><button type="button" onclick="go(1)" aria-label="Siguiente">›</button></div>
-</section>
-
-<section class="serv" id="servicios"><div class="wrap">
-  <div class="head"><h2 class="rv">Todo lo que hay <span class="lt">por encima del suelo</span></h2><p class="rv d1">En edificios, chalets y naves. Siempre mediante acceso por cuerda: sin andamio, sin licencia de ocupación de vía pública y sin la fachada tapada durante semanas.</p></div>
-  <div class="cards rv d1" id="cards">
-    <a class="cardx" href="/servicios/" target="_blank" rel="noopener"><div class="im"><img src="/images/stock-humedad-techo.jpg" alt="Mancha de humedad en un techo" loading="lazy"></div><div class="lbl">Goteras y humedades <span>›</span></div><p class="desc">Localizamos el origen real, que casi nunca está donde aparece la mancha.</p></a>
-    <a class="cardx" href="/servicios/" target="_blank" rel="noopener"><div class="im"><img src="/images/stock-chimenea-tecnico.jpg" alt="Técnico con arnés trabajando junto a una chimenea en una cubierta" loading="lazy"></div><div class="lbl">Tejados y cubiertas <span>›</span></div><p class="desc">Tejas rotas o movidas, revisión del faldón completo y fijación.</p></a>
-    <a class="cardx" href="/servicios/" target="_blank" rel="noopener"><div class="im"><img src="/images/stock-canalon-lluvia.jpg" alt="Canalón rebosando bajo la lluvia en una cubierta de teja" loading="lazy"></div><div class="lbl">Canalones y bajantes <span>›</span></div><p class="desc">Limpieza y reparación antes de que el agua rebose hacia la fachada.</p></a>
-    <a class="cardx" href="/servicios/" target="_blank" rel="noopener"><div class="im"><img src="/images/stock-tela-asfaltica.jpg" alt="Aplicación de tela asfáltica con soplete en una azotea" loading="lazy"></div><div class="lbl">Terrazas y azoteas <span>›</span></div><p class="desc">Tela asfáltica, sumideros y juntas. Reparación o impermeabilización.</p></a>
-    <a class="cardx" href="/servicios/" target="_blank" rel="noopener"><div class="im"><img src="/images/stock-fachada-tecnico.jpg" alt="Técnico colgado de una fachada de viviendas" loading="lazy"></div><div class="lbl">Fachadas <span>›</span></div><p class="desc">Grietas, zonas con riesgo de desprendimiento, sellado y pintura.</p></a>
-    <a class="cardx" href="/servicios/" target="_blank" rel="noopener"><div class="im"><img src="/images/stock-pinchos-palomas.jpg" alt="Pinchos anti-palomas instalados en la cornisa de un edificio" loading="lazy"></div><div class="lbl">Anti-palomas <span>›</span></div><p class="desc">Redes y pinchos, y retirada de nidos en patios y cubiertas.</p></a>
-  </div>
-  <div class="ctrl"><button type="button" onclick="cards(-1)" aria-label="Anterior">‹</button><button type="button" onclick="cards(1)" aria-label="Siguiente">›</button></div>
-</div></section>
-
-<section class="why" id="como"><div class="wrap grid">
-  <div class="ph zoom rv"><img src="/images/stock-madrid-granvia.jpg" alt="Tejados y azoteas del centro de Madrid" loading="lazy"></div>
-  <div class="pnl">
-    <h2 class="rv"><span class="lt">Por qué los administradores</span> nos llaman más de una vez</h2>
-    <p class="rv d1">Sabemos cómo funciona vuestro día a día: muchos edificios, muchos vecinos y poca paciencia para proveedores que no responden.</p>
-    <ol class="rv d2">
-      <li><b>01</b><div><strong>Un solo interlocutor</strong>El mismo técnico para todos los edificios que gestiones.</div></li>
-      <li><b>02</b><div><strong>Documentación en regla</strong>Seguro de RC y certificación ANETVA, antes de empezar.</div></li>
-      <li><b>03</b><div><strong>Os ahorráis el andamio entero</strong>Suele ser la partida más cara del presupuesto, y no repara nada.</div></li>
-      <li><b>04</b><div><strong>Precio cerrado por escrito</strong>Sin sorpresas a mitad de obra.</div></li>
-    </ol>
-    <a class="btn rv d3" href="/revision-pre-ite/" target="_blank" rel="noopener">Revisión antes de la ITE</a>
-  </div>
-</div></section>
-
-<section class="ins" id="preguntas"><div class="wrap">
-  <div class="head"><h2 class="rv" style="font-size:clamp(30px,3.4vw,44px)">Lo que más nos preguntan</h2><a class="btn rv d1" href="/preguntas/" target="_blank" rel="noopener">Todas las preguntas</a></div>
+<section class="tabs"><div class="wrap">
   <div class="grid">
-    <article class="c rv"><div class="im zoom on"><img src="/images/galeria-5.jpg" alt="Patio interior y azotea vistos desde la cubierta" loading="lazy"></div><span class="k">El informe</span><h3>¿Qué incluye el informe del estado de la cubierta?</h3><p>Fotografías del estado real, qué necesita reparación y qué no, y un presupuesto cerrado. Pensado para llevarlo directamente a la junta.</p></article>
-    <article class="c rv d1"><div class="im zoom on"><img src="/images/stock-madrid-tejados.jpg" alt="Tejados de teja y azoteas de un barrio de Madrid" loading="lazy"></div><span class="k">Precio</span><h3>¿Cuánto cuesta la inspección y el informe?</h3><p>95 € + IVA, es decir 114,95 € con IVA. El mismo precio sea cual sea el edificio. Se descuenta íntegro si nos contratas la reparación.</p></article>
-    <div class="sign rv d2" id="precios"><span class="k">Pide la revisión</span><h3>Te llamamos nosotros</h3><p>Déjanos un teléfono y te llamamos para concertar la visita. Informe y presupuesto sin compromiso.</p><a class="btn" href="#pedir" data-scroll>Pedir revisión</a></div>
-    <article class="c rv d3"><div class="im zoom on"><img src="/images/stock-azotea.jpg" alt="Azotea impermeabilizada con peto de ladrillo y chimenea" loading="lazy"></div><span class="k">Garantía</span><h3>¿La reparación lleva garantía?</h3><p>Sí. Toda reparación va con garantía por escrito, recogida en el presupuesto que firmas antes de empezar.</p></article>
+    <a class="cardx zoom rv" href="/el-informe/" target="_blank" rel="noopener"><div class="im"><img src="/images/hero-bg.jpg" alt="Técnico revisando el borde de una cubierta" loading="lazy"></div><div class="lbl">El informe y la revisión <span>›</span></div><p class="desc">Qué incluye, cómo funciona en cuatro pasos y qué cuesta: 95 € + IVA que se descuentan si nos contratas la reparación.</p></a>
+    <a class="cardx zoom rv d1" href="/servicios/" target="_blank" rel="noopener"><div class="im"><img src="/images/stock-fachada-tecnico.jpg" alt="Técnico colgado de una fachada de viviendas" loading="lazy"></div><div class="lbl">Servicios <span>›</span></div><p class="desc">Goteras, tejados, canalones, terrazas, fachadas y anti-palomas. Todo por cuerda, sin andamio.</p></a>
+    <a class="cardx zoom rv d2" href="/trabajos/" target="_blank" rel="noopener"><div class="im"><img src="/images/galeria-3.jpg" alt="Cuerdas tendidas sobre una cubierta de teja" loading="lazy"></div><div class="lbl">Fotos y reseñas <span>›</span></div><p class="desc">Trabajos reales en Madrid vistos desde la propia cubierta, y lo que dicen de nosotros en Google.</p></a>
   </div>
 </div></section>
+
+<section class="pin"><div class="bgph"><img src="/images/stock-cristal-equipo.jpg" alt="" loading="lazy"></div>
+  <span class="line rv">Sin <b>andamio</b></span>
+  <span class="line rv d1">Sin <b>sorpresas</b></span>
+  <span class="line rv d2">Presupuesto cerrado <b>por escrito</b></span>
+</section>
 
 <section class="close" id="pedir">
-  <div class="ph"><img src="/images/stock-cristal-equipo.jpg" alt="Técnicos de trabajos verticales sobre una fachada acristalada" loading="lazy">
-    <div class="txt"><h2 class="rv" style="color:#fff">Cuéntanos <span class="lt">qué tienes</span></h2><div class="acts rv d1"><a class="btn" href="tel:+34664466016" onclick="trackLlamar('contacto_bloque');">Llamar: 664 466 016</a><a class="btn ghost" href="https://wa.me/34664466016" onclick="return abrirWhatsApp(event,'contacto')">Escribir por WhatsApp</a></div></div>
+  <div class="ph"><img src="/images/stock-fachada-ladrillo.jpg" alt="Técnico de trabajos verticales sobre una fachada de ladrillo" loading="lazy">
+    <div class="txt"><span class="k rv" style="color:#fff">Tres formas de contactar</span><h2 class="rv" style="color:#fff">Cuéntanos <span class="lt">qué tienes</span></h2><p class="rv d1" style="color:#DDE6F0;max-width:46ch">Por teléfono, por WhatsApp o con el formulario. Nos dices qué edificio es y qué se está viendo; una foto basta para empezar. Lunes a jueves de 8:00 a 16:00 y viernes de 8:00 a 13:00, con urgencias fuera de horario.</p><div class="acts rv d1"><a class="btn" href="tel:+34664466016" onclick="trackLlamar('contacto_bloque');">Llamar: 664 466 016</a><a class="btn ghost" href="https://wa.me/34664466016" onclick="return abrirWhatsApp(event,'contacto')">Escribir por WhatsApp</a></div></div>
   </div>
   <div class="card rv d1">
-    <span class="k">¿Hablamos?</span><h3>Pide la revisión con informe</h3>
+    <span class="k">Formulario</span><h3>Pide la revisión con informe</h3>
     <form class="f" method="POST" action="https://formsubmit.co/06e3abbdcadff379d8ff3b4d2643c96d" onsubmit="return enviarFormulario(event, this, 'formulario_web', true);">
       <input type="hidden" name="_subject" value="COMUNIDAD - Solicitud de revisión (web)"><input type="hidden" name="_captcha" value="false"><input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
       <div class="row"><label>Nombre<input type="text" name="nombre" placeholder="Tu nombre" required></label><label>Teléfono *<input type="tel" name="telefono" inputmode="tel" placeholder="600 000 000" required></label></div>
@@ -506,7 +478,7 @@
 </main>
 <footer><div class="wrap">
   <div class="top"><a class="logo" href="/" style="box-shadow:0 0 0 1px #EEE"><img src="/images/logo.jpg" alt="" width="32" height="32"> Acceso X Cuerda</a><div class="r"><a class="arrow" href="https://g.page/r/Cdp_VyJMjG7pEBM" target="_blank" rel="noopener">Leer las reseñas en Google</a></div></div>
-  <div class="links"><a href="#pedir" data-scroll>Contacto</a><a href="/el-informe/" target="_blank" rel="noopener">El informe</a><a href="/servicios/" target="_blank" rel="noopener">Servicios</a><a href="/trabajos/" target="_blank" rel="noopener">Trabajos</a><a href="/como-funciona/" target="_blank" rel="noopener">Cómo funciona</a><a href="/precios/" target="_blank" rel="noopener">Precios</a><a href="/preguntas/" target="_blank" rel="noopener">Preguntas</a><a href="/revision-pre-ite/" target="_blank" rel="noopener">Revisión pre-ITE</a><a href="tel:+34664466016" onclick="trackLlamar('footer');">664 466 016</a><a href="mailto:accesoxcuerda@gmail.com" style="text-transform:none">accesoxcuerda@gmail.com</a></div>
+  <div class="links"><a href="#pedir" data-scroll>Contacto</a><a href="/el-informe/" target="_blank" rel="noopener">El informe</a><a href="/servicios/" target="_blank" rel="noopener">Servicios</a><a href="/trabajos/" target="_blank" rel="noopener">Fotos y reseñas</a><a href="/precios/" target="_blank" rel="noopener">Precios</a><a href="/preguntas/" target="_blank" rel="noopener">Preguntas</a><a href="/revision-pre-ite/" target="_blank" rel="noopener">Revisión pre-ITE</a><a href="tel:+34664466016" onclick="trackLlamar('footer');">664 466 016</a><a href="mailto:accesoxcuerda@gmail.com" style="text-transform:none">accesoxcuerda@gmail.com</a></div>
   <div class="legal"><span>© 2026 Acceso X Cuerda · Jose María Moreno Molina · Madrid y provincias limítrofes: Toledo, Guadalajara, Segovia y Ávila · Lunes a jueves 8:00–16:00 · Viernes 8:00–13:00 · Urgencias fuera de horario</span><span>Técnicos ANETVA · Seguro de RC · Operador de drone AESA</span></div>
 </div></footer>
 

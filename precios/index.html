@@ -24,6 +24,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0A223C">
 <link rel="canonical" href="https://accesoporcuerda.com/precios/">
+
 <link rel="icon" href="/images/logo.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&family=Roboto:wght@400;500;700&display=swap">
@@ -35,7 +36,6 @@
     --ink:#1F1F1F; --muted:#5F6368; --grey:#E9E9E9; --grey-2:#D9D9D9; --paper:#FFFFFF; --rule:#E3E3E3;
     --disp:"Roboto Condensed","Arial Narrow",Arial,sans-serif; --body:"Roboto","Helvetica Neue",Arial,sans-serif;
     --ease:cubic-bezier(.2,.7,.2,1);
-    --bp:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='420' height='420' viewBox='0 0 420 420' fill='none' stroke='%230A223C' stroke-opacity='.08' stroke-width='1'><circle cx='210' cy='210' r='150'/><circle cx='210' cy='210' r='95'/><path d='M60 210h300M210 60v300M105 105l210 210M315 105L105 315'/><rect x='30' y='30' width='360' height='360'/></svg>");
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
@@ -109,7 +109,11 @@
   @media (max-width:900px){ .hero{padding-bottom:96px;min-height:560px} .hero .bg img{object-position:50% 40%} }
 
   /* ---------- 2 · QUIÉNES SOMOS ---------- */
-  .who{background:var(--paper) var(--bp) no-repeat right -80px top -40px;padding:140px 0 120px}
+  .who{padding:140px 0 120px;position:relative;isolation:isolate;overflow:hidden}
+  .who .bgph{position:absolute;inset:0;z-index:-2}
+  .who .bgph img{width:100%;height:100%;object-fit:cover;object-position:center 30%}
+  .who::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(255,255,255,.97) 0%,rgba(255,255,255,.94) 48%,rgba(255,255,255,.55) 100%)}
+  @media (max-width:900px){ .who::after{background:linear-gradient(180deg,rgba(255,255,255,.96) 0%,rgba(255,255,255,.9) 100%)} }
   .who .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}
   .who h2{max-width:14ch}
   .who p.lead{margin:28px 0 30px}
@@ -132,14 +136,16 @@
   @media (max-width:900px){ .split{grid-template-columns:1fr} .split .ph{min-height:320px} .split .pnl{padding:60px 28px} }
 
   /* ---------- 4 · FRASES FIJAS ---------- */
-  .pin{height:260vh;background:var(--grey-2)}
-  .pin .stage{position:sticky;top:0;height:100vh;display:grid;place-items:center;overflow:hidden;background:var(--grey-2) var(--bp) no-repeat center/620px}
-  .pin .line{position:absolute;font:300 clamp(42px,7vw,96px)/1 var(--disp);text-transform:uppercase;color:#fff;text-align:center;opacity:0;transform:translateY(24px);transition:opacity .6s var(--ease),transform .6s var(--ease);padding:0 20px}
+  .pin{position:relative;isolation:isolate;overflow:hidden;color:#fff;padding:140px 0;text-align:center}
+  .pin .bgph{position:absolute;inset:0;z-index:-2}
+  .pin .bgph img{width:100%;height:100%;object-fit:cover;object-position:center}
+  .pin::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(10,34,60,.82),rgba(10,34,60,.7))}
+  .pin .line{display:block;font:300 clamp(40px,6.4vw,88px)/1.05 var(--disp);text-transform:uppercase;padding:0 20px}
   .pin .line b{font-weight:700}
-  .pin .line.on{opacity:1;transform:none}
+  @media (max-width:900px){ .pin{padding:90px 0} }
 
   /* ---------- 5 · CIFRA + CARRUSEL DE TRABAJOS ---------- */
-  .works{padding:120px 0 0;background:var(--paper) var(--bp) no-repeat left -120px top -60px}
+  .works{padding:100px 0 0}
   .works .head{text-align:center;max-width:760px;margin:0 auto 64px}
   .works .head p{color:var(--muted);margin-top:18px}
   .slider{position:relative;overflow:hidden}
@@ -155,7 +161,7 @@
   .prog button{border:0;background:none;font:700 18px/1 var(--disp);cursor:pointer;color:var(--ink);padding:6px 10px}
 
   /* ---------- 6 · SERVICIOS ---------- */
-  .serv{padding:120px 0 120px;background:var(--paper) var(--bp) no-repeat right -160px top 40px}
+  .serv{padding:120px 0 120px}
   .serv .head{max-width:640px;margin-bottom:48px}
   .serv .head p{color:var(--muted);margin-top:18px}
   .cards{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:6px}
@@ -171,6 +177,25 @@
   .ctrl button{width:44px;height:44px;border:0;background:var(--accent);color:#fff;font-size:20px;cursor:pointer}
   .ctrl button:hover{background:var(--accent-ink)}
 
+  /* tarjetas de pestañas (portada) */
+  .tabs{padding:0 0 120px}
+  .tabs .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .tabs .cardx{flex:none}
+  .tabs .cardx .im{aspect-ratio:4/3}
+  @media (max-width:900px){ .tabs{padding-bottom:70px} .tabs .grid{grid-template-columns:1fr} .tabs .cardx .im{aspect-ratio:16/9} }
+  /* reseñas */
+  .rese{padding:96px 0}
+  .rese .head{display:grid;grid-template-columns:auto 1fr auto;gap:28px;align-items:center;margin-bottom:36px}
+  .rese .nota{font:700 96px/1 var(--disp);color:var(--dark)}
+  .rese .nota small{display:block;font:700 12px/1 var(--disp);letter-spacing:.12em;text-transform:uppercase;color:var(--accent-ink);margin-top:6px}
+  .rese .stars{color:#F4B400;font-size:22px;letter-spacing:2px}
+  .rese .head p{color:var(--muted);max-width:44ch;margin-top:8px}
+  .rese .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .rese blockquote{background:var(--grey);padding:28px 26px;display:flex;flex-direction:column;gap:14px;font-size:15px;color:#333}
+  .rese blockquote .stars{font-size:16px}
+  .rese blockquote p{flex:1}
+  .rese cite{font:700 12px/1 var(--disp);letter-spacing:.12em;text-transform:uppercase;font-style:normal;color:var(--dark)}
+  @media (max-width:1000px){ .rese .grid{grid-template-columns:1fr 1fr} .rese .head{grid-template-columns:1fr} } @media (max-width:600px){ .rese .grid{grid-template-columns:1fr} }
   /* ---------- 7 · PANEL GRIS + FOTO SOLAPADA ---------- */
   .why{padding:60px 0 140px}
   .why .grid{display:grid;grid-template-columns:.9fr 1.1fr;align-items:center}
@@ -224,7 +249,10 @@
   @media (max-width:900px){ footer{padding-bottom:110px} }
 
   /* ---------- PÁGINAS INTERIORES ---------- */
-  .subhero{background:var(--dark) var(--bp) no-repeat right -120px top 40px;color:#fff;padding:170px 0 80px}
+  .subhero{background:var(--dark);color:#fff;padding:170px 0 80px;position:relative;isolation:isolate;overflow:hidden}
+  .subhero .bgph{position:absolute;inset:0;z-index:-2}
+  .subhero .bgph img{width:100%;height:100%;object-fit:cover;object-position:center 40%}
+  .subhero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(10,34,60,.94) 0%,rgba(10,34,60,.86) 55%,rgba(10,34,60,.55) 100%)}
   .subhero .volver{display:inline-flex;gap:8px;font:700 11px/1 var(--disp);letter-spacing:.14em;text-transform:uppercase;color:#C8D6E5;margin-bottom:26px}
   .subhero .volver:hover{color:#fff}
   .subhero .eyebrow{color:var(--accent);margin-bottom:14px}
@@ -233,7 +261,7 @@
   .subhero .sub{max-width:62ch;color:#C8D6E5;margin-top:26px;font-size:17px}
   @media (max-width:900px){ .subhero{padding:120px 0 56px} }
   .sec{padding:96px 0}
-  .sec.tint{background:var(--grey) var(--bp) no-repeat left -140px bottom -80px}
+  .sec.tint{background:var(--grey)}
   .sec .eyebrow{margin-bottom:14px}
   .sec h2{font-size:clamp(32px,4vw,52px)}
   .sec p.sub{color:var(--muted);max-width:66ch;margin-top:16px}
@@ -334,19 +362,17 @@
 <body>
 <header id="hd">
   <div class="wrap">
-    <div class="util"><a href="/revision-pre-ite/" target="_blank" rel="noopener">Revisión pre-ITE</a><a href="https://g.page/r/Cdp_VyJMjG7pEBM" target="_blank" rel="noopener">Reseñas en Google</a></div>
+    <div class="util"><a href="/revision-pre-ite/" target="_blank" rel="noopener">Revisión pre-ITE</a><a href="/precios/" target="_blank" rel="noopener">Precios</a><a href="https://g.page/r/Cdp_VyJMjG7pEBM" target="_blank" rel="noopener">Reseñas en Google</a></div>
     <div class="hd">
       <a class="logo" href="/"><img src="/images/logo.jpg" alt="" width="32" height="32"> Acceso X Cuerda</a>
       <ul class="nav">
+        <li><a href="/el-informe/" target="_blank" rel="noopener" data-nav="el-informe">El informe</a><div class="drop"><a href="/el-informe/" target="_blank" rel="noopener">Qué incluye</a><a href="/el-informe/" target="_blank" rel="noopener">Cómo funciona</a><a href="/precios/" target="_blank" rel="noopener">Cuánto cuesta</a><a href="/revision-pre-ite/" target="_blank" rel="noopener">Revisión antes de la ITE</a></div></li>
         <li><a href="/servicios/" target="_blank" rel="noopener" data-nav="servicios">Servicios</a>
           <div class="drop wide">
-            <div><div class="grp">Lo que hacemos</div><a href="/servicios/" target="_blank" rel="noopener">Goteras y humedades</a><a href="/servicios/" target="_blank" rel="noopener">Tejados y cubiertas</a><a href="/servicios/" target="_blank" rel="noopener">Canalones y bajantes</a><a href="/servicios/" target="_blank" rel="noopener">Terrazas y azoteas</a><a href="/servicios/" target="_blank" rel="noopener">Fachadas</a><a href="/servicios/" target="_blank" rel="noopener">Anti-palomas</a></div>
-            <div><div class="grp">Para comunidades</div><a href="/el-informe/" target="_blank" rel="noopener">El informe</a><a href="/revision-pre-ite/" target="_blank" rel="noopener">Revisión antes de la ITE</a><a href="/trabajos/" target="_blank" rel="noopener">Trabajos realizados</a></div>
+            <div><div class="grp">Lo que hacemos</div><a href="/servicios/" target="_blank" rel="noopener">Goteras y humedades</a><a href="/servicios/" target="_blank" rel="noopener">Tejados y cubiertas</a><a href="/servicios/" target="_blank" rel="noopener">Canalones y bajantes</a></div>
+            <div><div class="grp">&nbsp;</div><a href="/servicios/" target="_blank" rel="noopener">Terrazas y azoteas</a><a href="/servicios/" target="_blank" rel="noopener">Fachadas</a><a href="/servicios/" target="_blank" rel="noopener">Anti-palomas</a></div>
           </div></li>
-        <li><a href="/el-informe/" target="_blank" rel="noopener" data-nav="el-informe">El informe</a></li>
-        <li><a href="/como-funciona/" target="_blank" rel="noopener" data-nav="como-funciona">Cómo funciona</a><div class="drop"><a href="/como-funciona/" target="_blank" rel="noopener">Los cuatro pasos</a><a href="/precios/" target="_blank" rel="noopener">Cuánto cuesta</a><a href="/preguntas/" target="_blank" rel="noopener">Preguntas frecuentes</a></div></li>
-        <li><a href="/trabajos/" target="_blank" rel="noopener" data-nav="trabajos">Trabajos</a></li>
-        <li><a href="/precios/" target="_blank" rel="noopener" data-nav="precios" aria-current="page">Precios</a></li>
+        <li><a href="/trabajos/" target="_blank" rel="noopener" data-nav="trabajos">Fotos y reseñas</a></li>
         <li><a href="/preguntas/" target="_blank" rel="noopener" data-nav="preguntas">Preguntas</a></li>
       </ul>
       <a class="contact" href="/#pedir">Contacto</a>
@@ -356,14 +382,14 @@
   </div>
 </header>
 <nav class="mmenu" id="mmenu" aria-label="Menú móvil">
-  <a href="/servicios/" target="_blank" rel="noopener" onclick="cerrarMenu()">Servicios</a><a href="/el-informe/" target="_blank" rel="noopener" onclick="cerrarMenu()">El informe</a><a href="/como-funciona/" target="_blank" rel="noopener" onclick="cerrarMenu()">Cómo funciona</a><a href="/trabajos/" target="_blank" rel="noopener" onclick="cerrarMenu()">Trabajos</a><a href="/precios/" target="_blank" rel="noopener" onclick="cerrarMenu()">Precios</a><a href="/preguntas/" target="_blank" rel="noopener" onclick="cerrarMenu()">Preguntas</a><a href="/revision-pre-ite/" target="_blank" rel="noopener" onclick="cerrarMenu()">Revisión pre-ITE</a><a href="/#pedir" onclick="cerrarMenu()">Contacto</a>
+  <a href="/el-informe/" target="_blank" rel="noopener" onclick="cerrarMenu()">El informe</a><a href="/servicios/" target="_blank" rel="noopener" onclick="cerrarMenu()">Servicios</a><a href="/trabajos/" target="_blank" rel="noopener" onclick="cerrarMenu()">Fotos y reseñas</a><a href="/preguntas/" target="_blank" rel="noopener" onclick="cerrarMenu()">Preguntas</a><a href="/precios/" target="_blank" rel="noopener" onclick="cerrarMenu()">Precios</a><a href="/revision-pre-ite/" target="_blank" rel="noopener" onclick="cerrarMenu()">Revisión pre-ITE</a><a href="/#pedir" onclick="cerrarMenu()">Contacto</a>
   <div class="foot"><a class="btn" href="tel:+34664466016" style="width:100%" onclick="trackLlamar('menu_movil');">Llamar: 664 466 016</a></div>
 </nav>
 <main>
-<section class="subhero"><div class="wrap">
+<section class="subhero"><div class="bgph"><img src="/images/stock-azotea.jpg" alt="" loading="lazy"></div><div class="wrap">
   <a class="volver" href="/">← Inicio</a>
   <span class="eyebrow">Cuánto cuesta</span>
-  <h1>Lo único cerrado sin ver<br>el edificio <em>es la revisión</em></h1>
+  <h1 class="rv">Lo único cerrado sin ver<br>el edificio <em>es la revisión</em></h1>
   <p class="sub">La reparación depende de lo que encontremos, y por eso la vemos antes de darte un número. Lo que sí te podemos decir hoy es qué cuesta saberlo y qué hace que un presupuesto suba o baje.</p>
 </div></section>
 <section class="sec precios"><div class="wrap">
@@ -394,7 +420,7 @@
 </main>
 <footer><div class="wrap">
   <div class="top"><a class="logo" href="/" style="box-shadow:0 0 0 1px #EEE"><img src="/images/logo.jpg" alt="" width="32" height="32"> Acceso X Cuerda</a><div class="r"><a class="arrow" href="https://g.page/r/Cdp_VyJMjG7pEBM" target="_blank" rel="noopener">Leer las reseñas en Google</a></div></div>
-  <div class="links"><a href="/#pedir">Contacto</a><a href="/el-informe/" target="_blank" rel="noopener">El informe</a><a href="/servicios/" target="_blank" rel="noopener">Servicios</a><a href="/trabajos/" target="_blank" rel="noopener">Trabajos</a><a href="/como-funciona/" target="_blank" rel="noopener">Cómo funciona</a><a href="/precios/" target="_blank" rel="noopener">Precios</a><a href="/preguntas/" target="_blank" rel="noopener">Preguntas</a><a href="/revision-pre-ite/" target="_blank" rel="noopener">Revisión pre-ITE</a><a href="tel:+34664466016" onclick="trackLlamar('footer');">664 466 016</a><a href="mailto:accesoxcuerda@gmail.com" style="text-transform:none">accesoxcuerda@gmail.com</a></div>
+  <div class="links"><a href="/#pedir">Contacto</a><a href="/el-informe/" target="_blank" rel="noopener">El informe</a><a href="/servicios/" target="_blank" rel="noopener">Servicios</a><a href="/trabajos/" target="_blank" rel="noopener">Fotos y reseñas</a><a href="/precios/" target="_blank" rel="noopener">Precios</a><a href="/preguntas/" target="_blank" rel="noopener">Preguntas</a><a href="/revision-pre-ite/" target="_blank" rel="noopener">Revisión pre-ITE</a><a href="tel:+34664466016" onclick="trackLlamar('footer');">664 466 016</a><a href="mailto:accesoxcuerda@gmail.com" style="text-transform:none">accesoxcuerda@gmail.com</a></div>
   <div class="legal"><span>© 2026 Acceso X Cuerda · Jose María Moreno Molina · Madrid y provincias limítrofes: Toledo, Guadalajara, Segovia y Ávila · Lunes a jueves 8:00–16:00 · Viernes 8:00–13:00 · Urgencias fuera de horario</span><span>Técnicos ANETVA · Seguro de RC · Operador de drone AESA</span></div>
 </div></footer>
 
