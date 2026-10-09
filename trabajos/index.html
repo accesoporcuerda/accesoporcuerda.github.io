@@ -360,21 +360,39 @@
   .wa-sheet .op button{display:grid;text-align:left;padding:14px 16px;border:1px solid #DDD;background:var(--grey);color:var(--ink);font:600 16px/1.2 var(--body);cursor:pointer}
   .wa-sheet .op button small{font-weight:400;color:var(--muted);font-size:13px;margin-top:2px}
   .wa-sheet .cancel{margin-top:12px;background:none;border:0;color:var(--muted);font:inherit;text-decoration:underline;cursor:pointer;width:100%;padding:10px}
+  /* Páginas de servicio y guías */
+  .prosa{max-width:760px}
+  .prosa h2{font-size:clamp(28px,3.2vw,40px);margin:48px 0 16px}
+  .prosa h3{font-size:22px;margin:28px 0 10px}
+  .prosa p{margin:0 0 16px;color:#333;font-size:17px}
+  .prosa ul,.prosa ol{padding-left:22px;margin:0 0 18px;display:grid;gap:8px;color:#333;font-size:17px}
+  .prosa a{color:var(--accent-ink);text-decoration:underline}
+  .prosa .rel a{text-decoration:none;color:var(--ink)}
+  .aviso{background:var(--grey);padding:18px 22px;border-left:4px solid var(--accent);font-size:15px!important}
+  .rel{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:22px}
+  .prosa .rel{grid-template-columns:1fr 1fr 1fr;margin-top:48px}
+  .rel a{display:block;background:var(--paper);border:1px solid var(--rule);padding:22px;font:700 19px/1.15 var(--disp);text-transform:uppercase;transition:border-color .2s}
+  .sec:not(.tint) .rel a{background:var(--grey);border-color:var(--grey)}
+  .rel a:hover{border-color:var(--accent)}
+  .rel a span{display:block;font:400 15px/1.5 var(--body);text-transform:none;color:var(--muted);margin-top:8px}
+  .svc .body a.mas{color:#fff;font:700 13px/1 var(--disp);letter-spacing:.1em;text-transform:uppercase;margin-top:6px}
+  .svc .body a.mas:hover{color:var(--accent)}
+  @media (max-width:900px){ .rel,.prosa .rel{grid-template-columns:1fr} }
 </style>
 
 </head>
 <body>
 <header id="hd">
   <div class="wrap">
-    <div class="util"><a href="/revision-pre-ite/" target="_blank" rel="noopener">Revisión pre-ITE</a><a href="/precios/" target="_blank" rel="noopener">Precios</a><a href="https://g.page/r/Cdp_VyJMjG7pEBM" target="_blank" rel="noopener">Reseñas en Google</a></div>
+    <div class="util"><a href="/guias/" target="_blank" rel="noopener">Guías</a><a href="/revision-pre-ite/" target="_blank" rel="noopener">Revisión pre-ITE</a><a href="/precios/" target="_blank" rel="noopener">Precios</a><a href="https://g.page/r/Cdp_VyJMjG7pEBM" target="_blank" rel="noopener">Reseñas en Google</a></div>
     <div class="hd">
       <a class="logo" href="/"><img src="/images/logo-64.webp" alt="" width="32" height="32"> Acceso X Cuerda</a>
       <ul class="nav">
         <li><a href="/el-informe/" target="_blank" rel="noopener" data-nav="el-informe">El informe</a><div class="drop"><a href="/el-informe/" target="_blank" rel="noopener">Qué incluye</a><a href="/el-informe/" target="_blank" rel="noopener">Cómo funciona</a><a href="/precios/" target="_blank" rel="noopener">Cuánto cuesta</a><a href="/revision-pre-ite/" target="_blank" rel="noopener">Revisión antes de la ITE</a></div></li>
         <li><a href="/servicios/" target="_blank" rel="noopener" data-nav="servicios">Servicios</a>
           <div class="drop wide">
-            <div><div class="grp">Lo que hacemos</div><a href="/servicios/" target="_blank" rel="noopener">Goteras y humedades</a><a href="/servicios/" target="_blank" rel="noopener">Tejados y cubiertas</a><a href="/servicios/" target="_blank" rel="noopener">Canalones y bajantes</a></div>
-            <div><div class="grp">&nbsp;</div><a href="/servicios/" target="_blank" rel="noopener">Terrazas y azoteas</a><a href="/servicios/" target="_blank" rel="noopener">Fachadas</a><a href="/servicios/" target="_blank" rel="noopener">Anti-palomas</a></div>
+            <div><div class="grp">Lo que hacemos</div><a href="/servicios/goteras-humedades/" target="_blank" rel="noopener">Goteras y humedades</a><a href="/servicios/tejados-cubiertas/" target="_blank" rel="noopener">Tejados y cubiertas</a><a href="/servicios/canalones-bajantes/" target="_blank" rel="noopener">Canalones y bajantes</a></div>
+            <div><div class="grp">&nbsp;</div><a href="/servicios/terrazas-azoteas/" target="_blank" rel="noopener">Terrazas y azoteas</a><a href="/servicios/fachadas/" target="_blank" rel="noopener">Fachadas</a><a href="/servicios/anti-palomas/" target="_blank" rel="noopener">Anti-palomas</a></div>
           </div></li>
         <li><a href="/trabajos/" target="_blank" rel="noopener" data-nav="trabajos" aria-current="page">Fotos y reseñas</a></li>
         <li><a href="/preguntas/" target="_blank" rel="noopener" data-nav="preguntas">Preguntas</a></li>
@@ -435,7 +453,7 @@
 </main>
 <footer><div class="wrap">
   <div class="top"><a class="logo" href="/" style="box-shadow:0 0 0 1px #EEE"><img src="/images/logo-64.webp" alt="" width="32" height="32"> Acceso X Cuerda</a><div class="r"><a class="arrow" href="https://g.page/r/Cdp_VyJMjG7pEBM" target="_blank" rel="noopener">Leer las reseñas en Google</a></div></div>
-  <div class="links"><a href="/#pedir">Contacto</a><a href="/el-informe/" target="_blank" rel="noopener">El informe</a><a href="/servicios/" target="_blank" rel="noopener">Servicios</a><a href="/trabajos/" target="_blank" rel="noopener">Fotos y reseñas</a><a href="/precios/" target="_blank" rel="noopener">Precios</a><a href="/preguntas/" target="_blank" rel="noopener">Preguntas</a><a href="/revision-pre-ite/" target="_blank" rel="noopener">Revisión pre-ITE</a><a href="tel:+34664466016" onclick="trackLlamar('footer');">664 466 016</a><a href="mailto:accesoxcuerda@gmail.com" style="text-transform:none">accesoxcuerda@gmail.com</a></div>
+  <div class="links"><a href="/#pedir">Contacto</a><a href="/el-informe/" target="_blank" rel="noopener">El informe</a><a href="/servicios/" target="_blank" rel="noopener">Servicios</a><a href="/trabajos/" target="_blank" rel="noopener">Fotos y reseñas</a><a href="/precios/" target="_blank" rel="noopener">Precios</a><a href="/preguntas/" target="_blank" rel="noopener">Preguntas</a><a href="/revision-pre-ite/" target="_blank" rel="noopener">Revisión pre-ITE</a><a href="/guias/" target="_blank" rel="noopener">Guías</a><a href="tel:+34664466016" onclick="trackLlamar('footer');">664 466 016</a><a href="mailto:accesoxcuerda@gmail.com" style="text-transform:none">accesoxcuerda@gmail.com</a></div>
   <div class="legal"><span>© 2026 Acceso X Cuerda · Jose María Moreno Molina · Madrid y provincias limítrofes: Toledo, Guadalajara, Segovia y Ávila · Lunes a jueves 8:00–16:00 · Viernes 8:00–13:00 · Urgencias fuera de horario</span><span>Técnicos ANETVA · Seguro de RC · Operador de drone AESA</span></div>
 </div></footer>
 
